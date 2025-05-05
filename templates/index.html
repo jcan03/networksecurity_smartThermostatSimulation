@@ -1,0 +1,61 @@
+<!-- T00686800 Joel Canonico COMP 3260 Project -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- page name-->
+  <title>Smart Thermostat Security Simulator</title>
+  <!-- link with css styles  -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+</head>
+<body>
+  <div class="container">
+    <!-- header title -->
+    <h2>Smart Thermostat Security Simulator</h2>
+    
+    <!-- login section -->
+    <div id="login-section">
+      <h3>Login</h3>
+      <input type="text" id="username" placeholder="Username">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+    </div>
+    
+    <!-- control/ simulation section (visible after login) -->
+    <div id="control-section" style="display: none;">
+      <!-- add/remove/view thermostats -->
+      <h3>Thermostat Management</h3>
+      <button onclick="addThermostat()">Add Thermostat</button>
+      <div id="thermostat-list"></div>
+      
+      <!-- turn on/off security measures -->
+      <h3>Global Security Controls</h3>
+      <label>
+        <input type="checkbox" id="acl_toggle" onchange="updateSecurity()">
+        Enable ACL
+      </label><br>
+      <label>
+        <input type="checkbox" id="login_validation_toggle" onchange="updateSecurity()">
+        Enable Login Validation
+      </label><br>
+      <label>
+        <input type="checkbox" id="dos_protection_toggle" onchange="updateSecurity()">
+        Enable DoS Protection
+      </label><br>
+      
+      <!-- section for simulating attacks -->
+      <h3>Simulate Attacks</h3>
+      <button onclick="simulateDosAttack()">Simulate DoS Attack</button>
+      <button onclick="simulateUnauthorizedAccess()">Simulate Unauthorized Access</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+    
+    <!-- status messages, updating based on actions -->
+    <p class="status" id="status">Status: Not logged in.</p>
+    <p class="attack-status" id="attack-status"></p>
+  </div>
+  
+  <!-- link with javascript file -->
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
